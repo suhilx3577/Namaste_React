@@ -1,7 +1,8 @@
-import  ReactDOM  from "react-dom/client"
+import  ReactDOM  from "react-dom/client";
+import React from "react";
 
-const root =  ReactDOM.createRoot(document.getElementById("root"))
+const Header = <h1>Heading</h1>
 
-const Heading = <h1>Header</h1>
+const root = ReactDOM.createRoot(document.getElementById("root"))
 
-root.render(Heading)
+root.render(Header)

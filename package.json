@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "parcel index.html",
+    "start": "parcel header.html",
     "build": "parcel build index2.html",
     "test": "jest"
   },
