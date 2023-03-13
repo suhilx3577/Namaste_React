@@ -1,53 +1,62 @@
 import { restroList } from "../constants"
 import RestCards from "./Restrocard"
-import { useState } from "react"
-export const Body =() =>{
+import { useState ,useEffect} from "react"
+import Shimmer from "./Shimmer"
 
-  //use State Hook
-  const [searchText,setSearchText] = useState("KFC") //return array[variable, functoupdate-var] =useState("default-value")
-
-  const[restos,setRestos]= useState(restroList)
-
-  function filterData(restroList,searchtxt){
-    return(
-      restroList.filter((rest)=> rest.data.name.includes(searchText))
-    )
-  }
-
+function filterData(allRestos,searchText){
   return(
+    allRestos.filter((rest)=> rest?.data?.name?.toLowerCase().includes(searchText.toLowerCase()))
+  )
+}
+
+export const Body =() =>{
+  //use State Hook
+  const [searchText,setSearchText] = useState("") //return array[variable, functoupdate-var] =useState("default-value")
+  const[Filtrestos,setFiltRestos]= useState([])
+  const[allRestos,setAllRestos]= useState([])
+
+  
+  useEffect(()=>{
+    getRestro();
+  },[])
+
+  async function getRestro(){
+    const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=13.0081639&lng=77.7122996&page_type=DESKTOP_WEB_LISTING")
+    const json = await data.json()
+    setAllRestos(json.data?.cards[2]?.data?.data?.cards)
+    setFiltRestos(json.data?.cards[2]?.data?.data?.cards)
+
+    // console.log(json)
+  }
+  if(!allRestos) return null;
+
+  if(Filtrestos?.length===0)
+    return <h1>No match to your search</h1>;
+
+  return allRestos?.length===0 ? <Shimmer/> : (
     <>
     <div className="body">
-
       <div className="search-container">
         <input type="text" className="search-input" placeholder="Search" value={searchText} 
-        onChange={(e)=>{
-            setSearchText(e.target.value)
-          }
-        }
+        onChange={(e)=>{ setSearchText(e.target.value) }}
         />
         <button 
         onClick={()=>{
-
           //filter
-          const data = filterData(restroList,searchText)
+          const data = filterData(allRestos,searchText)
           //update
-          setRestos(data);
-
+          setFiltRestos(data);
         }}
         >Search</button>
-
       </div>
 
-      <div className="restaurantlists">
-      {
-        restos.map((rest)=>{
+      <div className="restaurantlists">{
+        Filtrestos.map((rest)=>{
           return <RestCards {...rest.data} key={rest.data.id}/>
         })
       }
       </div>
-
     </div>
-
     </>
   )
 }

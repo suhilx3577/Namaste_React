@@ -5,8 +5,6 @@ import Footer from "./components/Footer"
 import { Body } from "./components/Body";
 
 
-
-
 const Maincomponent =() =>{
     return(
         <>

@@ -27,18 +27,21 @@
 .card{
     margin-top: 30px;
     width:200px;
-    height: 250px;
+    height: 300px;
     border: 1px solid black;
     box-shadow: 0 0 10px rgb(72, 72, 72);
+    padding: 10px;
 }
 .card>img{
     width:90%;
-    height: 60%;
+    height: 50%;
     margin-left: 10px;
 }
 
 .restaurantlists{
     display: flex;
     flex-wrap: wrap;
+    font-size: 0.9rem;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     gap: 10px;
 }
