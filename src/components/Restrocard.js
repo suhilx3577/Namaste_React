@@ -1,6 +1,7 @@
-import { IMG_CDN_URL } from "../constants";
+import { IMG_CDN_URL , menuLink} from "../constants";
+import { Link } from "react-router-dom";
 
-const RestCards =({name,cloudinaryImageId,area,cuisines})=>{
+const RestCards =({name,cloudinaryImageId,area,cuisines,id})=>{
     return (
         <div className="card">
             <img src={IMG_CDN_URL+cloudinaryImageId} alt="image"/>
@@ -8,6 +9,7 @@ const RestCards =({name,cloudinaryImageId,area,cuisines})=>{
             <p>{cuisines.join(" ,")}</p>
             <h5>{area}</h5>
         </div>
+
     )
   }
 

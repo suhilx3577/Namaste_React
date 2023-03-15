@@ -45,3 +45,22 @@
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     gap: 10px;
 }
+
+.shimmerbox{
+    display: flex;
+    margin-top: 50px;
+    width:200px;
+    height: 300px;
+    border: 1px solid black;
+    background-color: lightgrey;
+    padding: 10px;
+
+}
+
+.restro-1{
+    display: flex;
+}
+
+.restro-menu-1{
+    margin-left: 10rem;
+}

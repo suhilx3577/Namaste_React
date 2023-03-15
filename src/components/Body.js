@@ -2,6 +2,8 @@ import { restroList } from "../constants"
 import RestCards from "./Restrocard"
 import { useState ,useEffect} from "react"
 import Shimmer from "./Shimmer"
+import {Link} from "react-router-dom"
+
 
 function filterData(allRestos,searchText){
   return(
@@ -30,8 +32,8 @@ export const Body =() =>{
   }
   if(!allRestos) return null;
 
-  if(Filtrestos?.length===0)
-    return <h1>No match to your search</h1>;
+  // if(Filtrestos?.length===0)
+  //   return <h1>No match to your search</h1>;
 
   return allRestos?.length===0 ? <Shimmer/> : (
     <>
@@ -52,11 +54,12 @@ export const Body =() =>{
 
       <div className="restaurantlists">{
         Filtrestos.map((rest)=>{
-          return <RestCards {...rest.data} key={rest.data.id}/>
+          return <Link to={"/restaurantmenu/"+rest.data.id} key={rest.data.id}><RestCards {...rest.data} /></Link>
         })
       }
       </div>
     </div>
+
     </>
   )
 }

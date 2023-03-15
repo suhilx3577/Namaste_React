@@ -1,5 +1,9 @@
 const Shimmer= () =>(
-<h1>Shimmer is Loading</h1>
+    <>
+    <div className="restaurantlists">
+        {Array(12).fill("").map((e,index)=><div key={index} className="shimmerbox"></div>)}
+    </div>
+    </>
 )
 
 export default Shimmer
