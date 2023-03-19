@@ -3,13 +3,9 @@ import RestCards from "./Restrocard"
 import { useState ,useEffect} from "react"
 import Shimmer from "./Shimmer"
 import {Link} from "react-router-dom"
-
-
-function filterData(allRestos,searchText){
-  return(
-    allRestos.filter((rest)=> rest?.data?.name?.toLowerCase().includes(searchText.toLowerCase()))
-  )
-}
+import { filterData } from "../utils/helper"
+import getRestro from "../utils/getRestro"
+import useOnline from "../utils/useOnline"
 
 export const Body =() =>{
   //use State Hook
@@ -19,21 +15,14 @@ export const Body =() =>{
 
   
   useEffect(()=>{
-    getRestro();
+    getRestro(setAllRestos,setFiltRestos);
   },[])
 
-  async function getRestro(){
-    const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=13.0081639&lng=77.7122996&page_type=DESKTOP_WEB_LISTING")
-    const json = await data.json()
-    setAllRestos(json.data?.cards[2]?.data?.data?.cards)
-    setFiltRestos(json.data?.cards[2]?.data?.data?.cards)
+  const isOnline = useOnline();
 
-    // console.log(json)
-  }
+  if(!isOnline) return <h1>Please check your internet connection</h1>
+
   if(!allRestos) return null;
-
-  // if(Filtrestos?.length===0)
-  //   return <h1>No match to your search</h1>;
 
   return allRestos?.length===0 ? <Shimmer/> : (
     <>

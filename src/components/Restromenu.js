@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom"
 import { useEffect,useState } from "react";
 import { IMG_CDN_URL, menuLink } from "../constants";
 import Shimmer from "./Shimmer";
+import useRestromenu from "../utils/useRestroMenu";
 
 const RestroMenu =() =>{
 
@@ -9,18 +10,10 @@ const RestroMenu =() =>{
     //we can even do the destructuring
     const {id} = params
 
-    const[restaurant,setRestaurant] = useState();
 
-    useEffect(()=>{
-        getRestroMenu();
-    },[]);
+    //created a custom hook babyyy
+    const restaurant = useRestromenu(id);
 
-    async function getRestroMenu (){
-        const data = await fetch(menuLink+id);
-        const json = await data.json();
-        setRestaurant(json.data);
-        console.log(json.data);
-    }
 
     return restaurant==null? <Shimmer/> : (
         <>

@@ -14,6 +14,7 @@ const NavItems =()=> {
         <Link to="/about"><h3>ABOUT</h3></Link>
         <Link to="/cart"><h3>CART</h3></Link>
         <Link to="/contact"><h3>CONTACT</h3></Link>
+        <Link to="/instamart"><h3>INSTAMART</h3></Link>
         {/* only expressions work not statements     
             Ternary Operators are Expressions    */}
         { 
