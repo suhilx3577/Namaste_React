@@ -9,7 +9,7 @@ const NavItems =()=> {
     
     return(
 
-        <div className="navbar">
+        <div className="flex mt-4 justify-between gap-8 text-center text-white font-bold">
         <Link to="/"><h3>HOME</h3></Link>
         <Link to="/about"><h3>ABOUT</h3></Link>
         <Link to="/cart"><h3>CART</h3></Link>
@@ -17,6 +17,7 @@ const NavItems =()=> {
         <Link to="/instamart"><h3>INSTAMART</h3></Link>
         {/* only expressions work not statements     
             Ternary Operators are Expressions    */}
+        <div className="mb-4">
         { 
         login ? <button onClick={
             ()=>{
@@ -24,7 +25,10 @@ const NavItems =()=> {
             }>Logout</button> : <button onClick={
                 ()=>{
                     setLogin(true)
-            }}>Login</button> }
+            }}>Login</button> 
+        }
+
+        </div>
 
     </div>
 )
@@ -37,8 +41,8 @@ export const Heading =()=> {
 
     return(
     <>
-        <div className="header">
-            <img className= "logo"
+        <div className="flex justify-between  bg-blue-300 shadow-lg">
+            <img className= "w-16 "
             src={Food}
             alt="logo"/>
             <NavItems/>
