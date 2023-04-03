@@ -1,4 +1,4 @@
-import { restroList } from "../constants"
+import { useContext } from "react";
 import RestCards from "./Restrocard"
 import { useState ,useEffect} from "react"
 import Shimmer from "./Shimmer"
@@ -6,6 +6,7 @@ import {Link} from "react-router-dom"
 import { filterData } from "../utils/helper"
 import getRestro from "../utils/getRestro"
 import useOnline from "../utils/useOnline"
+import userContext from "../utils/userContext";
 
 export const Body =() =>{
   //use State Hook
@@ -13,6 +14,7 @@ export const Body =() =>{
   const[Filtrestos,setFiltRestos]= useState([])
   const[allRestos,setAllRestos]= useState([])
 
+  const {user , setUser } = useContext(userContext);
   
   useEffect(()=>{
     getRestro(setAllRestos,setFiltRestos);
@@ -28,7 +30,7 @@ export const Body =() =>{
     <>
     <div className="overflow-hidden">
       <div className="search-container mt-2 self-center bg-purple-100">
-        <input type="text" className="bg-slate-100 rounded-sm bg-green-200" placeholder="Search" value={searchText} 
+        <input type="text" className="bg-slate-100 rounded-s" placeholder="Search" value={searchText} 
         onChange={(e)=>{ setSearchText(e.target.value) }}
         />
         <button 
@@ -40,6 +42,15 @@ export const Body =() =>{
           setFiltRestos(data);
         }}
         >Search</button>
+        <input 
+        value={user.name}
+        onChange = { e=> setUser({
+              name:e.target.value,
+              email:"newGmail.com"
+          })
+        }
+        >
+        </input>
       </div>
 
       <div className="flex  justify-between flex-wrap gap-4 bg-purple-100">{

@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState,useContext } from "react";
 import Food from "../assets/images/Food.png"
 import {Link} from "react-router-dom"
+import userContext from "../utils/userContext";
 
 
 const NavItems =()=> {
@@ -39,12 +40,15 @@ const NavItems =()=> {
 
 export const Heading =()=> {
 
+    const {user} = useContext(userContext)
+
     return(
     <>
         <div className="flex justify-between  bg-blue-300 shadow-lg">
             <img className= "w-16 "
             src={Food}
             alt="logo"/>
+            <h1 className="mt-4 font-bold"> {user.name}</h1>
             <NavItems/>
         </div>
 
