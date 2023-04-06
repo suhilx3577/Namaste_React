@@ -11,6 +11,10 @@ import Error from "./components/Error";
 import RestroMenu from "./components/Restromenu";
 import Shimmer from "./components/Shimmer";
 import userContext from "./utils/userContext";
+import store from "./utils/store"
+import { Provider } from "react-redux";
+import Cart from "./components/Cart";
+
 // import Instamart from "./components/Instamart";
 
 
@@ -19,18 +23,20 @@ const Instamart = lazy(()=>import("./components/Instamart"))
 const Maincomponent = () =>{
     const [user,setUser] = useState(
         {
-            name:"Suhil Khan",
+            name:"",
             email:"suhil@gmail.com"
         }
     );
 
     return(
         <>
+        <Provider store={store}>
         <userContext.Provider value={{user:user,setUser:setUser}}>
         <Heading/>
         <Outlet/>
         <Footer/>
         </userContext.Provider>
+        </Provider>
         </>
     )
 }
@@ -59,6 +65,10 @@ const appRoute=createBrowserRouter([
             {
                 path:"/instamart",
                 element: <Suspense fallback={<Shimmer/>}><Instamart/></Suspense>
+            },
+            {
+                path:"/cart",
+                element:<Cart/>
             }
         ]
     },
