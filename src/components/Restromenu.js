@@ -38,13 +38,14 @@ const RestroMenu =() =>{
             <div>
                 <h1 className="font-bold text-3xl">MENU</h1>
                 <div className="m-2">
+                    <ul data-testid="menu">
                     {
-                    menulist.map((rest,i)=>{
+                    menulist?.map((rest,i)=>{
                         return(
                         <>
-                            <h2 className="font-semibold" >{rest.card?.card?.title}</h2>
-                            <ul key={rest.card?.card?.title}>
-                                {rest.card?.card?.itemCards?.map((item,i)=>{
+                            <h2 className="font-semibold" data-testid="menu-title">{rest?.card?.card?.title}</h2>
+                            <ul key={rest?.card?.card?.title}>
+                                {rest?.card?.card?.itemCards?.map((item,i)=>{
                                     return(
                                         <li key={item?.card?.info?.id}>
                                             {item?.card?.info?.name}
@@ -58,6 +59,7 @@ const RestroMenu =() =>{
                         )
                     })
                     }
+                    </ul>
 
                 </div>
             </div>

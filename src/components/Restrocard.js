@@ -13,7 +13,7 @@ const RestCards =({name,cloudinaryImageId,area,cuisines,id})=>{
             <h3 className="font-bold">{name}</h3>
             <p className="font-serif">{cuisines.join(" ,")}</p>
             <h5 className="font-serif">{area}</h5>
-            <h5 className="font-bold">{user.name} {user.email}</h5>
+            <h5 className="font-bold">{user?.name} {user?.email}</h5>
         </div>
 
     )

@@ -30,11 +30,17 @@ export const Body =() =>{
     <>
     <div className="overflow-hidden">
       <div className="search-container mt-2 self-center bg-purple-100">
-        <input type="text" className="bg-slate-100 rounded-s" placeholder="Search" value={searchText} 
+        <input 
+        type="text"
+        className="bg-slate-100 rounded-s"
+        placeholder="Search"
+        data-testid="searchinput"
+        value={searchText} 
         onChange={(e)=>{ setSearchText(e.target.value) }}
         />
         <button 
         className="bg-purple-400 w-20 rounded-lg "
+        data-testid="search-btn"
         onClick={()=>{
           //filter
           const data = filterData(allRestos,searchText)
@@ -43,7 +49,7 @@ export const Body =() =>{
         }}
         >Search</button>
         <input 
-        value={user.name}
+        value={user?.name}
         onChange = { e=> setUser({
               name:e.target.value,
               email:"newGmail.com"
@@ -53,7 +59,7 @@ export const Body =() =>{
         </input>
       </div>
 
-      <div className="flex  justify-between flex-wrap gap-4 bg-purple-100">{
+      <div className="flex  justify-between flex-wrap gap-4 bg-purple-100" data-testid="resList">{
         Filtrestos.map((rest)=>{
           return <Link to={"/restaurantmenu/"+rest.data.id} key={rest.data.id}><RestCards {...rest.data} /></Link>
         })
